@@ -41,3 +41,10 @@ library defines its input language as "canonical Roman numerals only",
 `IIII` is not a valid input and raises `ValueError`. If you need to accept
 non-canonical input, normalise it first (for example by parsing to an int
 with your own rules and calling `to_roman`).
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
